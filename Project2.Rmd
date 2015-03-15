@@ -39,26 +39,29 @@ Analysis of the first group:
 ```{r}
 summary(df1)
 lm(data=df1)
-p1 + geom_smooth(method="lm")
+b1 <- ggplot(df1, aes(x=x, y=y)) + geom_boxplot(outlier.color = NULL, outlier.size=4) + labs(title = '1')
+grid.arrange(p1 + geom_smooth(method="lm"), b1, ncol=2, main="First Group")
 ```
 
 Analysis of the second group:
 ```{r}
 summary(df2)
 lm(data=df2)
-p2 + geom_smooth(method="lm")
+b2 <- ggplot(df2, aes(x=x, y=y)) + geom_boxplot(outlier.color = NULL, outlier.size=4) + labs(title = '2')
+grid.arrange(p2 + geom_smooth(method="lm"), b2, ncol=2)
 ```
 
 Analysis of the third group:
 ```{r}
 summary(df3)
 lm(data=df3)
-p3 + geom_smooth(method="lm")
+b3 <- ggplot(df3, aes(x=x, y=y)) + geom_boxplot(outlier.color = NULL, outlier.size=4) + labs(title = '3')
+grid.arrange(p3 + geom_smooth(method="lm"), b3, ncol=2)
 ```
 
 Analysis of the fourth group:
 ```{r}
 summary(df4)
 table(df4)
-p4 + geom_boxplot()
+ggplot(df4, aes(x=x, y=y)) + geom_boxplot(outlier.color = NULL, outlier.size=4) + labs(title = '4')
 ```
