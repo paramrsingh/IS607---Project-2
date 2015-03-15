@@ -1,8 +1,17 @@
-# Param Singh - IS607 - Project 2 
+---
+title: "IS607 Project2"
+author: "Param Singh"
+date: "March 15, 2015"
+output: html_document
+---
+
+I approached the analysis for this project by examining the data, looking at all four groupings at a high-level as a whole, and then conducting individual analysis. I used the results of the analysis drive my conclusions.
+
+```{r}
 require(ggplot2)
 require(grid)
 require(gridExtra)
-# setup data
+# Data setup - I chose to treat these as separate data frames since the relationship between X and Y among the four groups was different
 df1 <- data.frame( x = c(10.00, 8.00, 13.00, 9.00, 11.00, 14.00, 6.00, 4.00, 12.00, 7.00, 5.00), 
                    y = c(8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68) )
 
@@ -14,27 +23,42 @@ df3 <- data.frame( x = c(10.00, 8.00, 13.00, 9.00, 11.00, 14.00, 6.00, 4.00, 12.
 
 df4 <- data.frame( x = c(8.00, 8.00, 8.00, 8.00, 8.00, 8.00, 8.00, 19.00, 8.00, 8.00, 8.00), 
                    y = c(6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89) )
+```
 
-# TODO - ggplot theme
+Overall plot of the different groups of data:
 
-#display grid of all data
+```{r, echo=FALSE}
 p1 <- ggplot(df1, aes(x=x, y=y)) + geom_point(color='blue', size=3) + labs(title = '1')
 p2 <- ggplot(df2, aes(x=x, y=y)) + geom_point(color ='green4', size=3, pch=17) + labs(title = '2')
 p3 <- ggplot(df3, aes(x=x, y=y)) + geom_point(color='red', size=3, pch=23) + labs(title = '3')
-p4 <- ggplot(df4, aes(x=x, y=y)) + geom_point(size = 3) + labs(title = '4')
+p4 <- ggplot(df4, aes(x=x, y=y)) + geom_point() + labs(title = '4')
 grid.arrange(p1, p2, p3, p4, ncol=2)
+```
 
-#individual analysis
+Analysis of the first group:
+```{r}
 summary(df1)
 lm(data=df1)
 p1 + geom_smooth(method="lm")
+```
 
+Analysis of the second group:
+```{r}
 summary(df2)
 lm(data=df2)
 p2 + geom_smooth(method="lm")
+```
 
+Analysis of the third group:
+```{r}
 summary(df3)
 lm(data=df3)
 p3 + geom_smooth(method="lm")
+```
 
-
+Analysis of the fourth group:
+```{r}
+summary(df4)
+table(df4)
+p4 + geom_boxplot()
+```
